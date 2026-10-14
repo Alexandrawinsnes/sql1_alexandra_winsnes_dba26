@@ -1,22 +1,17 @@
-SET LINESIZE 220  
-SET WRAP OFF
 SET PAGESIZE 100
-SET TRIMOUT ON
 
-SELECT * FROM system.jokes;
+SELECT * FROM jokes;
 
-SET LINESIZE 90
+DESC system.jokes;
 
-DESC jokes;
-
-SELECT category, rating, joke FROM jokes;
-
-
-SELECT
-    category, rating, joke
+SELECT 
+    category, 
+    rating, 
+    joke 
 FROM jokes
-ORDER BY rating DESC
-FETCH FIRST 5 ROWS ONLY; -- LIMIT 5 IN OTHER SQL
+WHERE rating > 5
+ORDER BY rating DESC, category
+FETCH FIRST 5 ROWS ONLY;
 
 
 
