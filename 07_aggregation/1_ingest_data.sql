@@ -1,4 +1,4 @@
-SET LOAD SCAN_ROWS 100_000
+SET LOAD SCAN_ROWS 100000
 DROP TABLE IF EXISTS computer_prices;
 LOAD computer_prices computer_prices_all.csv NEW
 

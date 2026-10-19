@@ -1,39 +1,33 @@
 SET PAGESIZE 100
+
 DESC system.computer_prices;
 
 SELECT * FROM computer_prices
 FETCH FIRST 5 ROWS ONLY;
 
+    
 SELECT
-    device_type,
-    CAST(AVG(price) AS INT) AS avg_price,
-    CAST(AVG(weight_kg) AS INT) AS avg_weight_kg,
-    CAST(AVG(cpu_threads) AS INT) AS avg_cpu_threads,
-    count(*) AS number_devices
+    os,
+    MEDIAN(price) AS median_prices,
+    ROUND(AVG(weight_kg),2) AS avg_weight_kg,
+    MAX(RAM_GB) AS topp_ram
 FROM computer_prices
-GROUP BY device_type;
+--filter it, do WHERE before GROUP BY
+GROUP BY os;
+
 
 SELECT
-    brand,
-    device_type,
-    CAST(AVG(price) AS INT) AS avg_price,
-    CAST(AVG(weight_kg) AS INT) AS avg_weight_kg,
-    CAST(AVG(cpu_threads) AS INT) AS avg_cpu_threads,
-    count(*) AS number_devices
+    os,
+    MEDIAN(price) AS median_prices,
+    ROUND(AVG(weight_kg),2) AS avg_weight_kg,
+    MAX(RAM_GB) AS topp_ram
 FROM computer_prices
-GROUP BY brand, device_type
-ORDER BY brand;
-
--- WHERE VS HAVING
-SELECT
-    brand,
-    count(*) AS number_devices,
-    ROUND(AVG(price),2) AS avg_price
-FROM computer_prices
-WHERE release_year > 2023
-GROUP BY brand
-HAVING number_devices > 3000
-ORDER BY avg_price DESC;
-
+--filter it, do WHERE before GROUP BY
+WHERE release_year > 2024 -- filters before group by
+GROUP BY os
+--having after group, where before group
+HAVING median_prices > 1850 --  filters after group by
+--sorting
+ORDER BY median_prices DESC;
 
 EXIT
