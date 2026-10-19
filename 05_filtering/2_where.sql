@@ -1,47 +1,37 @@
 SET PAGESIZE 100;
 
+
 SELECT * FROM amazon
 FETCH FIRST 5 ROWS ONLY;
 
 DESC system.amazon;
 
 SELECT
-    order_id,
-    category,
-    product_name,
-    sales,
-    quantity,
-    profit
-FROM amazon
-WHERE profit > 190
-ORDER BY profit DESC;
-
--- number of orders where profits > 190
-SELECT COUNT(*)
-FROM amazon
-WHERE profit > 190;
-
-
-SELECT * FROM amazon
-WHERE order_id = 'CA-2012-111780'
-
-SELECT
-    MIN(sales),
-    MEDIAN(sales),
-    ROUND(AVG(sales)),
-    MAX(sales)
+    MIN(profit),
+    MEDIAN(profit),
+    AVG(profit),
+    MAX(profiy)
 FROM amazon;
 
-SELECT 
-    MIN(sales),
-    MEDIAN(sales),
-    ROUND(AVG(sales)),
-    MAX(sales)
-FROM amazon
-WHERE category = 'Phones';
 
--- IN
-SELECT * FROM amazon WHERE category IN ('Phone, 'Chairs');
+-- find those with negative profits
+SELECT
+    product_name,
+    category,
+    profit
+FROM amazon
+WHERE profit < 0
+ORDER BY profit;
+
+-- find a particular order
+SELECT * FROM amazon
+WHERE order_id = 'CA-2011-115812' AND category = 'Phones';
+
+-- IN operator
+SELECT category, product_name, sales
+FROM amazon
+WHERE category IN ('Tables, 'Chairs', 'Binders') AND profit > 0
+ORDER BY category;
 
 
 EXIT
