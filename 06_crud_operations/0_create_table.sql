@@ -5,3 +5,5 @@ CREATE TABLE students (
     major VARCHAR2(50),
     gpa NUMBER(3,2)
 );
+
+EXIT

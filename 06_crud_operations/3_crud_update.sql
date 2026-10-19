@@ -1,17 +1,17 @@
 DESC system.students;
 
-SELECT * FROM students;
 
-SELECT *
-FROM students
-WHERE first_name = 'Emma' AND last_name = 'Watson';
+-- before update -> select first, see that you select the correct row to avoid update wrong.
+
+SELECT * FROM students WHERE student_id = 3;
+
+-- After you know you got the correct row you can do this
+-- IMPORTANT to have a where clause when you update to make sure the right row gets upd
 
 UPDATE students
-SET gpa=4
-WHERE first_name = 'Emma' AND last_name = 'Watson';
+SET major = 'MATH'
+WHERE student_id = 3;
 
 SELECT * FROM students;
-
-COMMIT;
 
 EXIT
