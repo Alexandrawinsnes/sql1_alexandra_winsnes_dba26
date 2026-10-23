@@ -14,5 +14,21 @@ SELECT
     LENGTH(s)
 FROM ( SELECT 'OraCle sQl' AS s );
 
+-- substring, kan plocka ut delar av ordet
+
+SELECT
+    s,
+    SUBSTR(s, 1,6) AS first_six,
+    SUBSTR(s, 7) AS from_seven,
+    SUBSTR(s, -4) AS last_four
+FROM (SELECT 'Oracle SQL on Oracle26ai' AS s);
+
+-- INSTR (INSTRING)
+SELECT
+    INSTR('idempotent operation', 'operation') AS first_occurence,
+    INSTR('banana', 'an',1,2) AS second_occ,
+    SUBSTR('cool@evilcorp.com', INSTR('cool@evilcorp.com', '@')+1) AS domain;
+
+
 
 EXIT
