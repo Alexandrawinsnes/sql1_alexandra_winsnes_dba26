@@ -14,7 +14,7 @@ SELECT
     LENGTH(s)
 FROM ( SELECT 'OraCle sQl' AS s );
 
--- substring, kan plocka ut delar av ordet
+-- substring extraction, kan plocka ut delar av ordet
 
 SELECT
     s,
@@ -23,11 +23,22 @@ SELECT
     SUBSTR(s, -4) AS last_four
 FROM (SELECT 'Oracle SQL on Oracle26ai' AS s);
 
--- INSTR (INSTRING)
+-- INSTR (INSTRING) searching
 SELECT
     INSTR('idempotent operation', 'operation') AS first_occurence,
     INSTR('banana', 'an',1,2) AS second_occ,
     SUBSTR('cool@evilcorp.com', INSTR('cool@evilcorp.com', '@')+1) AS domain;
+
+-- clean a string, före leading, efter traiding. Ltrim och Rtrim
+SELECT
+    s,
+    TRIM(s),
+    LTRIM(s),
+    RTRIM(s),
+    RTRIM(INITCAP(REPLACE(TRIM(s), '     ', ' ')), 'x') AS cleaned
+FROM (SELECT '      HellU   ORaClex      ' AS s);
+
+
 
 
 
